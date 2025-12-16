@@ -4,14 +4,14 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "../ui/command";
+import { Command, CommandGroup, CommandItem, CommandList } from "../ui/command";
 
-const SelectReceive = () => {
+type SelectReceiveProps = {
+  value?: string;
+  onChange?: (value: string) => void;
+};
+
+const SelectReceive = ({ value: outerValue, onChange }: SelectReceiveProps) => {
   const currency = [
     { value: "nigeria", label: "NGN", icon: "/images/NGN.png" },
     { value: "usa", label: "USD", icon: "/images/USD.png" },
@@ -19,9 +19,15 @@ const SelectReceive = () => {
     { value: "canada", label: "CAD", icon: "/images/CAD.png" },
   ];
 
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState("");
+  const currentValue = outerValue ?? internalValue;
 
-  const selected = currency.find((c) => c.value === value);
+  const selected = currency.find((c) => c.value === currentValue);
+
+  const handleSelect = (v: string) => {
+    if (onChange) onChange(v);
+    else setInternalValue(v);
+  };
 
   return (
     <div>
@@ -29,6 +35,7 @@ const SelectReceive = () => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
+            aria-label="Select currency"
             className="rounded-3xl flex gap-2 overflow-hidden "
           >
             {selected ? (
@@ -66,7 +73,7 @@ const SelectReceive = () => {
                   <CommandItem
                     key={coin.value}
                     value={coin.label}
-                    onSelect={() => setValue(coin.value)}
+                    onSelect={() => handleSelect(coin.value)}
                   >
                     <Image
                       src={coin.icon}
@@ -78,7 +85,9 @@ const SelectReceive = () => {
                     {coin.label}
                     <Check
                       className={`ml-auto h-4 w-4 ${
-                        value === coin.value ? "opacity-100" : "opacity-0"
+                        currentValue === coin.value
+                          ? "opacity-100"
+                          : "opacity-0"
                       }`}
                     />
                   </CommandItem>

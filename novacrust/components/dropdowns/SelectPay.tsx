@@ -13,12 +13,17 @@ import {
   CommandList,
 } from "../ui/command";
 
-const SelectPay = () => {
+type SelectPayProps = {
+  value?: string;
+  onChange?: (value: string) => void;
+};
+
+const SelectPay = ({ value: outerValue, onChange }: SelectPayProps) => {
   const coins = [
     { value: "celo", label: "USDT - CELO", icon: "/images/CELO.png" },
     {
       value: "ethereum",
-      label: "Ethereum",
+      label: "ETH",
       icon: "/images/ETH.png",
       abb: "ETH",
     },
@@ -26,9 +31,15 @@ const SelectPay = () => {
     { value: "bnb", label: "USDT - BNB", icon: "/images/BNB.png" },
   ];
 
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState("");
+  const currentValue = outerValue ?? internalValue;
 
-  const selected = coins.find((c) => c.value === value);
+  const selected = coins.find((c) => c.value === currentValue);
+
+  const handleSelect = (v: string) => {
+    if (onChange) onChange(v);
+    else setInternalValue(v);
+  };
 
   return (
     <div>
@@ -36,6 +47,7 @@ const SelectPay = () => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
+            aria-label="Select coin"
             className="rounded-3xl flex gap-2 overflow-hidden "
           >
             {selected ? (
@@ -75,7 +87,7 @@ const SelectPay = () => {
                   <CommandItem
                     key={coin.value}
                     value={coin.label}
-                    onSelect={() => setValue(coin.value)}
+                    onSelect={() => handleSelect(coin.value)}
                   >
                     <Image
                       src={coin.icon}
@@ -87,7 +99,9 @@ const SelectPay = () => {
                     {coin.label}
                     <Check
                       className={`ml-auto h-4 w-4 ${
-                        value === coin.value ? "opacity-100" : "opacity-0"
+                        currentValue === coin.value
+                          ? "opacity-100"
+                          : "opacity-0"
                       }`}
                     />
                   </CommandItem>

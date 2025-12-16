@@ -6,7 +6,12 @@ import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { Command, CommandGroup, CommandItem, CommandList } from "../ui/command";
 
-const PayFrom = () => {
+type PayFromProps = {
+  value?: string;
+  onChange?: (value: string) => void;
+};
+
+const PayFrom = ({ value: outerValue, onChange }: PayFromProps) => {
   const coins = [
     { value: "metamask", label: " Metamask", icon: "/images/Metamask.png" },
     { value: "rainbow", label: "Rainbow", icon: "/images/Rainbow.png" },
@@ -22,9 +27,15 @@ const PayFrom = () => {
     },
   ];
 
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState("");
+  const currentValue = outerValue ?? internalValue;
 
-  const selected = coins.find((c) => c.value === value);
+  const selected = coins.find((c) => c.value === currentValue);
+
+  const handleSelect = (v: string) => {
+    if (onChange) onChange(v);
+    else setInternalValue(v);
+  };
 
   return (
     <div>
@@ -32,6 +43,7 @@ const PayFrom = () => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
+            aria-label="Select pay from option"
             className="w-full  p-6 border border-gray-200 rounded-full flex justify-between items-center gap-2 overflow-hidden "
           >
             {selected ? (
@@ -61,7 +73,7 @@ const PayFrom = () => {
                   <CommandItem
                     key={coin.value}
                     value={coin.label}
-                    onSelect={() => setValue(coin.value)}
+                    onSelect={() => handleSelect(coin.value)}
                   >
                     <Image
                       src={coin.icon}
@@ -73,7 +85,9 @@ const PayFrom = () => {
                     {coin.label}
                     <Check
                       className={`ml-auto h-4 w-4 ${
-                        value === coin.value ? "opacity-100" : "opacity-0"
+                        currentValue === coin.value
+                          ? "opacity-100"
+                          : "opacity-0"
                       }`}
                     />
                   </CommandItem>
