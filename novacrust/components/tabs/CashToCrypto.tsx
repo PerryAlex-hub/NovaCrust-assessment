@@ -1,4 +1,8 @@
+"use client";
+import { useState } from "react";
+
 const CashToCrypto = () => {
+  const [email, setEmail] = useState("");
   return (
     <div className="space-y-6 mt-5 pb-15 ">
       <div className="mt-15 container mx-auto flex flex-col items-center text-[#013941] font-medium text-3xl">
@@ -14,6 +18,10 @@ const CashToCrypto = () => {
         <p className="text-[#013941] font-medium">Email</p>
         <input
           type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           className="border border-gray-300 rounded-full p-4 w-full mt-2 outline-none"
           placeholder="Enter your email"
         />
