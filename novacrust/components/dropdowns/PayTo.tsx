@@ -4,22 +4,19 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
-import { Command, CommandGroup, CommandItem, CommandList } from "../ui/command";
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "../ui/command";
 
-const PayFrom = () => {
+const PayTo = () => {
   const coins = [
     { value: "metamask", label: " Metamask", icon: "/images/Metamask.png" },
     { value: "rainbow", label: "Rainbow", icon: "/images/Rainbow.png" },
-    {
-      value: "walletConnect",
-      label: "WalletConnect",
-      icon: "/images/WalletConnect.png",
-    },
-    {
-      value: "other",
-      label: "Other Crypto Wallets (Binance, Conibase, Bybit etc)",
-      icon: "/images/Wallet.png",
-    },
+    { value: "walletConnect", label: "WalletConnect", icon: "/images/WalletConnect.png" },
+    { value: "other", label: "Other Crypto Wallets (Binance, Conibase, Bybit etc)", icon: "/images/Wallet.png" },
   ];
 
   const [value, setValue] = useState("");
@@ -87,4 +84,4 @@ const PayFrom = () => {
   );
 };
 
-export default PayFrom;
+export default PayTo;

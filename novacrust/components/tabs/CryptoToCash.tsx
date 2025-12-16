@@ -1,5 +1,6 @@
 "use client";
 import PayFrom from "../dropdowns/PayFrom";
+import PayTo from "../dropdowns/PayTo";
 import SelectPay from "../dropdowns/SelectPay";
 import SelectReceive from "../dropdowns/SelectReceive";
 
@@ -41,29 +42,22 @@ const CryptoToCash = () => {
       </div>
 
       <div>
-        <div className="mb-3 font-semibold text-gray-700">Pay from</div>
+        <div className="mb-3 font-medium text-[#013941]">Pay from</div>
         <div>
-         <PayFrom />
+          <PayFrom />
         </div>
       </div>
 
       <div>
-        <div className="mb-3 font-semibold text-gray-700">Pay to</div>
+        <div className="mb-3 font-medium text-[#013941]">Pay to</div>
         <div>
-          <select
-            className="w-full p-4 border border-gray-200 rounded-full"
-            name="payTo"
-            id="payTo"
-          >
-            <option value="bank">Bank</option>
-            <option value="wallet">Wallet</option>
-          </select>
+          <PayTo />
         </div>
       </div>
 
       <div>
         <button className="w-full bg-[#013941] text-white p-4 rounded-full font-semibold">
-          Continue
+          Convert now
         </button>
       </div>
     </div>
