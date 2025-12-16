@@ -6,29 +6,22 @@ import { useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "../ui/command";
 
-const SelectPay = () => {
-  const coins = [
-    { value: "celo", label: "USDT - CELO", icon: "/images/CELO.png" },
-    {
-      value: "ethereum",
-      label: "Ethereum",
-      icon: "/images/ETH.png",
-      abb: "ETH",
-    },
-    { value: "ton", label: "USDT - TON", icon: "/images/TON.png" },
-    { value: "bnb", label: "USDT - BNB", icon: "/images/BNB.png" },
+const SelectReceive = () => {
+  const currency = [
+    { value: "nigeria", label: "NGN", icon: "/images/NGN.png" },
+    { value: "usa", label: "USD", icon: "/images/USD.png" },
+    { value: "britain", label: "GBP", icon: "/images/GBP.png" },
+    { value: "canada", label: "CAD", icon: "/images/CAD.png" },
   ];
 
   const [value, setValue] = useState("");
 
-  const selected = coins.find((c) => c.value === value);
+  const selected = currency.find((c) => c.value === value);
 
   return (
     <div>
@@ -51,12 +44,12 @@ const SelectPay = () => {
             ) : (
               <span className="flex items-center gap-2">
                 <Image
-                  src={coins[1].icon}
-                  alt={coins[1].label}
+                  src={currency[0].icon}
+                  alt={currency[0].label}
                   width={20}
                   height={20}
                 />
-                {coins[1].abb}
+                {currency[0].label}
               </span>
             )}
             <div>
@@ -67,11 +60,9 @@ const SelectPay = () => {
 
         <PopoverContent className="w-55 p-0">
           <Command>
-            <CommandInput placeholder="Search" />
-            <CommandEmpty>No coin found.</CommandEmpty>
             <CommandList>
               <CommandGroup>
-                {coins.map((coin) => (
+                {currency.map((coin) => (
                   <CommandItem
                     key={coin.value}
                     value={coin.label}
@@ -101,4 +92,4 @@ const SelectPay = () => {
   );
 };
 
-export default SelectPay;
+export default SelectReceive;

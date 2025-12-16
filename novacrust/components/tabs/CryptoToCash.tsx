@@ -1,5 +1,7 @@
 "use client";
+import PayFrom from "../dropdowns/PayFrom";
 import SelectPay from "../dropdowns/SelectPay";
+import SelectReceive from "../dropdowns/SelectReceive";
 
 const CryptoToCash = () => {
   return (
@@ -22,7 +24,7 @@ const CryptoToCash = () => {
       </div>
 
       <div className="p-6 border border-gray-200 rounded-4xl">
-        <div className=" text-gray-500 mb-5">You pay</div>
+        <div className=" text-gray-500 mb-5">You receive</div>
 
         <div className="flex justify-between items-center space-x-5">
           <div className=" rounded-2xl flex-1">
@@ -32,15 +34,8 @@ const CryptoToCash = () => {
               type="text"
             />
           </div>
-          <div className="bg-white px-8 rounded-2xl">
-            <select
-              className="border-gray-300 border bg-gray-200 rounded-3xl p-1"
-              name="crypto"
-              id="crypto"
-            >
-              <option value="bitcoin">Bitcoin</option>
-              <option value="ethereum">Ethereum</option>
-            </select>
+          <div className="bg-white flex shrink-0  rounded-2xl">
+            <SelectReceive />
           </div>
         </div>
       </div>
@@ -48,14 +43,7 @@ const CryptoToCash = () => {
       <div>
         <div className="mb-3 font-semibold text-gray-700">Pay from</div>
         <div>
-          <select
-            className="w-full p-4 border border-gray-200 rounded-full"
-            name="payFrom"
-            id="payFrom"
-          >
-            <option value="wallet">Wallet</option>
-            <option value="card">Card</option>
-          </select>
+         <PayFrom />
         </div>
       </div>
 

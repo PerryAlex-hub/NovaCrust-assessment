@@ -13,17 +13,12 @@ import {
   CommandList,
 } from "../ui/command";
 
-const SelectPay = () => {
+const PayFrom = () => {
   const coins = [
-    { value: "celo", label: "USDT - CELO", icon: "/images/CELO.png" },
-    {
-      value: "ethereum",
-      label: "Ethereum",
-      icon: "/images/ETH.png",
-      abb: "ETH",
-    },
-    { value: "ton", label: "USDT - TON", icon: "/images/TON.png" },
-    { value: "bnb", label: "USDT - BNB", icon: "/images/BNB.png" },
+    { value: "metamask", label: " Metamask", icon: "/images/Metamask.png" },
+    { value: "rainbow", label: "Rainbow", icon: "/images/Rainbow.png" },
+    { value: "walletConnect", label: "WalletConnect", icon: "/images/WalletConnect.png" },
+    { value: "other", label: "Other Crypto Wallets (Binance, Conibase, Bybit etc)", icon: "/images/Wallet.png" },
   ];
 
   const [value, setValue] = useState("");
@@ -36,10 +31,10 @@ const SelectPay = () => {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="rounded-3xl flex gap-2 overflow-hidden "
+            className="w-full  p-6 border border-gray-200 rounded-full flex justify-between items-center gap-2 overflow-hidden "
           >
             {selected ? (
-              <span className="flex items-center gap-2">
+              <span className="flex  gap-2">
                 <Image
                   src={selected.icon}
                   alt={selected.label}
@@ -49,15 +44,7 @@ const SelectPay = () => {
                 {selected.label}
               </span>
             ) : (
-              <span className="flex items-center gap-2">
-                <Image
-                  src={coins[1].icon}
-                  alt={coins[1].label}
-                  width={20}
-                  height={20}
-                />
-                {coins[1].abb}
-              </span>
+              <p className="text-gray-600 ">Select an option</p>
             )}
             <div>
               <ChevronDown className="h-7 w-7 opacity-50" />
@@ -65,10 +52,8 @@ const SelectPay = () => {
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="w-55 p-0">
+        <PopoverContent className="w-full p-0">
           <Command>
-            <CommandInput placeholder="Search" />
-            <CommandEmpty>No coin found.</CommandEmpty>
             <CommandList>
               <CommandGroup>
                 {coins.map((coin) => (
@@ -101,4 +86,4 @@ const SelectPay = () => {
   );
 };
 
-export default SelectPay;
+export default PayFrom;
