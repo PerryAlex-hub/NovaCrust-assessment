@@ -25,7 +25,7 @@ const Header = () => {
             className="data-[state=active]:bg-[#013941] shrink-0 text-gray-500 rounded-full data-[state=active]:text-white px-3"
             value="crypto-to-flat-loan"
           >
-            Crypto to flat loan
+            Crypto to fiat loan
           </TabsTrigger>
         </TabsList>
         </div>
