@@ -21,7 +21,7 @@ const CryptoToCash = () => {
               className="text-2xl outline-none font-bold mb-2"
               value={payAmount}
               onChange={(e) => {
-                const raw = e.target.value.replace(/[^0-9.]/g, ""); // only numbers + dot
+                const raw = e.target.value.replace(/[^0-9.]/g, ""); 
                 setPayAmount(raw);
               }}
               onBlur={() => setPayAmount(formatCurrency(payAmount))}
@@ -43,10 +43,10 @@ const CryptoToCash = () => {
               className="text-2xl outline-none font-bold mb-2"
               value={receiveAmount}
               onChange={(e) => {
-                const raw = e.target.value.replace(/[^0-9.]/g, ""); // only numbers + dot
-                setPayAmount(raw);
+                const raw = e.target.value.replace(/[^0-9.]/g, ""); 
+                setReceiveAmount(raw);
               }}
-              onBlur={() => setPayAmount(formatCurrency(payAmount))}
+              onBlur={() => setReceiveAmount(formatCurrency(payAmount))}
               type="text"
             />
           </div>
