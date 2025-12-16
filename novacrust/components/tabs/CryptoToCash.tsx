@@ -1,10 +1,15 @@
 "use client";
+import { useState } from "react";
 import PayFrom from "../dropdowns/PayFrom";
 import PayTo from "../dropdowns/PayTo";
 import SelectPay from "../dropdowns/SelectPay";
 import SelectReceive from "../dropdowns/SelectReceive";
+import formatCurrency from "@/lib/formatter";
 
 const CryptoToCash = () => {
+  const [payAmount, setPayAmount] = useState("1.00");
+  const [receiveAmount, setReceiveAmount] = useState("1.00");
+
   return (
     <div className="mt-5 space-y-7 mx-auto">
       <div className="p-6 border border-gray-200 rounded-4xl">
@@ -14,7 +19,12 @@ const CryptoToCash = () => {
           <div className=" rounded-2xl flex-1">
             <input
               className="text-2xl outline-none font-bold mb-2"
-              value="1.00"
+              value={payAmount}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/[^0-9.]/g, ""); // only numbers + dot
+                setPayAmount(raw);
+              }}
+              onBlur={() => setPayAmount(formatCurrency(payAmount))}
               type="text"
             />
           </div>
@@ -31,7 +41,12 @@ const CryptoToCash = () => {
           <div className=" rounded-2xl flex-1">
             <input
               className="text-2xl outline-none font-bold mb-2"
-              value="1.00"
+              value={receiveAmount}
+              onChange={(e) => {
+                const raw = e.target.value.replace(/[^0-9.]/g, ""); // only numbers + dot
+                setPayAmount(raw);
+              }}
+              onBlur={() => setPayAmount(formatCurrency(payAmount))}
               type="text"
             />
           </div>
