@@ -9,14 +9,12 @@ import formatCurrency from "@/lib/formatter";
 const CryptoToCash = () => {
   const [payAmount, setPayAmount] = useState("1.00");
   const [receiveAmount, setReceiveAmount] = useState("1.00");
-
   const [payCoin, setPayCoin] = useState<string | undefined>("ethereum");
   const [receiveCurrency, setReceiveCurrency] = useState<string | undefined>(
     "nigeria"
   );
   const [fromOption, setFromOption] = useState<string | undefined>(undefined);
   const [toOption, setToOption] = useState<string | undefined>(undefined);
-
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +49,7 @@ const CryptoToCash = () => {
 
     try {
       await new Promise((res) => setTimeout(res, 800));
-      setSuccess("Conversion request submitted (mock). We'll notify you soon.");
+      setSuccess("Conversion request submitted. We'll notify you soon.");
     } catch (e) {
       setError("Something went wrong. Try again.");
     } finally {
@@ -61,6 +59,8 @@ const CryptoToCash = () => {
 
   return (
     <div className="mt-5 space-y-7 mx-auto max-w-2xl">
+      {/* Select Pay Section */}
+
       <div className="p-6 border border-gray-200 rounded-4xl bg-white shadow-sm">
         <label className="text-gray-500 mb-2 block">You pay</label>
 
@@ -84,6 +84,8 @@ const CryptoToCash = () => {
           </div>
         </div>
       </div>
+
+      {/* Select Receive Section */}
 
       <div className="p-6 border border-gray-200 rounded-4xl bg-white shadow-sm">
         <label className="text-gray-500 mb-2 block">You receive</label>
@@ -112,6 +114,8 @@ const CryptoToCash = () => {
         </div>
       </div>
 
+      {/* Pay From Section */}
+
       <div>
         <div className="mb-3 font-medium text-[#013941]">Pay from</div>
         <div>
@@ -119,12 +123,16 @@ const CryptoToCash = () => {
         </div>
       </div>
 
+      {/* Pay To Section */}
+
       <div>
         <div className="mb-3 font-medium text-[#013941]">Pay to</div>
         <div>
           <PayTo value={toOption} onChange={(v) => setToOption(v)} />
         </div>
       </div>
+
+      {/* Convert Now Button */}
 
       <div>
         <button

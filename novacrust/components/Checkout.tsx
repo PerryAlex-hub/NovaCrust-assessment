@@ -7,9 +7,10 @@ const Header = () => {
   return (
     <div>
       <Tabs defaultValue="crypto-to-cash">
+        <div className="overflow-x-auto">
         <TabsList className="mx-auto  rounded-full p-0">
           <TabsTrigger
-            className="data-[state=active]:bg-[#013941] text-gray-500 rounded-full text data-[state=active]:text-white px-3"
+            className="data-[state=active]:bg-[#013941] text-gray-500 rounded-full data-[state=active]:text-white px-3"
             value="crypto-to-cash"
           >
             Crypto to cash
@@ -27,6 +28,7 @@ const Header = () => {
             Crypto to flat loan
           </TabsTrigger>
         </TabsList>
+        </div>
         <TabsContent value="crypto-to-cash">
           <CryptoToCash />
         </TabsContent>
