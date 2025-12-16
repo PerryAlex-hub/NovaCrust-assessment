@@ -7,22 +7,22 @@ const Header = () => {
   return (
     <div>
       <Tabs defaultValue="crypto-to-cash">
-        <div className="overflow-x-auto">
+        <div className=" mx-0 md:mx-auto overflow-x-auto">
         <TabsList className="mx-auto  rounded-full p-0">
           <TabsTrigger
-            className="data-[state=active]:bg-[#013941] text-gray-500 rounded-full data-[state=active]:text-white px-3"
+            className="data-[state=active]:bg-[#013941] shrink-0 text-gray-500 rounded-full data-[state=active]:text-white px-3"
             value="crypto-to-cash"
           >
             Crypto to cash
           </TabsTrigger>
           <TabsTrigger
-            className="data-[state=active]:bg-[#013941] text-gray-500 rounded-full data-[state=active]:text-white px-3"
+            className="data-[state=active]:bg-[#013941] shrink-0 text-gray-500 rounded-full data-[state=active]:text-white px-3"
             value="cash-to-crypto"
           >
             Cash to crypto
           </TabsTrigger>
           <TabsTrigger
-            className="data-[state=active]:bg-[#013941] text-gray-500 rounded-full data-[state=active]:text-white px-3"
+            className="data-[state=active]:bg-[#013941] shrink-0 text-gray-500 rounded-full data-[state=active]:text-white px-3"
             value="crypto-to-flat-loan"
           >
             Crypto to flat loan
